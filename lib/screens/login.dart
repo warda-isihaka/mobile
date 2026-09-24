@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,7 +28,8 @@ class _LoginState extends State<Login> {
     try {
       final response = await http.post(
         Uri.parse('http://10.29.215.50:8000/api/login'),
-        body: {'email': email, 'password': password},
+        headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
+        body: jsonEncode( {'email': email, 'password': password}),
       );
       // handle the response from the API
       if (response.statusCode == 200) {
@@ -46,10 +49,14 @@ class _LoginState extends State<Login> {
         // Invalid credentials
         // Show an error message or handle the failure case
         print('Invalid credentials');
-      } else {
+      } else if (response.statusCode == 500){
+        // Server error
+        // Show an error message or handle the failure case
+        print('Server error(500)');
+      }else {
         // Login failed
         // Show an error message or handle the failure case
-        print('Login failed');
+        print('Login failed with status code: ${response.statusCode}');
       }
     } catch (e) {
       // Handle any exceptions that occur during the API call
@@ -113,7 +120,7 @@ class _LoginState extends State<Login> {
 
               TextField(
                 controller: emailController,
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   hintText: 'Enter your email',
                   hintStyle: TextStyle(
