@@ -27,19 +27,20 @@ class _LoginState extends State<Login> {
     // Example: Make an API call to authenticate the user
     try {
       final response = await http.post(
-        Uri.parse('http://10.29.215.50:8000/api/login'),
+        Uri.parse('http://10.219.33.50:8000/api/login'),
         headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         body: jsonEncode( {'email': email, 'password': password}),
       );
       // handle the response from the API
       if (response.statusCode == 200) {
         // Login successful
+        final String UserName = jsonDecode(response.body)['user']['name'];
         // Navigate to the next screen or show a success message
         if (!mounted) return;
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const DashboardScreen(),
+            builder: (context) => DashboardPage(userName: UserName),
           ), // Replace with your actual Dashboard widget class name
         );
         // nextpage
