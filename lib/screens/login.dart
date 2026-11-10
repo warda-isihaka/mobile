@@ -29,11 +29,8 @@ class _LoginState extends State<Login> {
     try {
       final response = await http.post(
         Uri.parse(loginUrl),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: jsonEncode({'email': email, 'password': password}),
+        headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
+        body: jsonEncode( {'email': email, 'password': password}),
       );
       // handle the response from the API
       if (response.statusCode == 200) {
