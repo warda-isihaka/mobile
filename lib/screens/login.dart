@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
     // Example: Make an API call to authenticate the user
     try {
       final response = await http.post(
-        Uri.parse('http://10.219.33.50:8000/api/login'),
+        Uri.parse('http://10.245.210.50:8000/api/login'),
         headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         body: jsonEncode( {'email': email, 'password': password}),
       );

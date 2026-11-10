@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/qr_scanner.dart';
 
 class DashboardPage extends StatefulWidget {
   final String userName;
 
-  const DashboardPage({
-    super.key,
-    this.userName = "User",
-  });
+  const DashboardPage({super.key, this.userName = "User"});
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -15,7 +13,6 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   int selectedIndex = 0;
 
- 
   final String pledges = "TSh 8,750,000";
   final String remaining = "TSh 3,750,000";
 
@@ -39,7 +36,7 @@ class _DashboardPageState extends State<DashboardPage> {
               'assets/images/logo.jpg',
               width: 50,
               height: 50,
-              fit:BoxFit.contain,
+              fit: BoxFit.contain,
             ),
 
             const SizedBox(width: 12),
@@ -57,11 +54,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
             Stack(
               children: [
-                const Icon(
-                  Icons.notifications,
-                  size: 32,
-                  color: Colors.white,
-                ),
+                const Icon(Icons.notifications, size: 32, color: Colors.white),
 
                 Positioned(
                   right: 0,
@@ -87,10 +80,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
             const SizedBox(width: 15),
 
-            const Icon(
-              Icons.menu,
-              size: 34,
-            ),
+            const Icon(Icons.menu, size: 34),
           ],
         ),
       ),
@@ -104,8 +94,21 @@ class _DashboardPageState extends State<DashboardPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               // =========================
+
+            ElevatedButton.icon(onPressed: () {
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => 
+              const QRScannerPage(),),);
+            },
+            icon: const
+            Icon(Icons.qr_code_scanner),
+            label:const Text('Scan QR Code'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFAB6005),
+              foregroundColor: Colors.white,
+            ),
+            ),
               // WELCOME CARD
               // =========================
               Container(
@@ -140,8 +143,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
                     Expanded(
                       child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "Hello, ${widget.userName} 👋",
@@ -164,8 +166,6 @@ class _DashboardPageState extends State<DashboardPage> {
                         ],
                       ),
                     ),
-
-                    
                   ],
                 ),
               ),
@@ -177,14 +177,13 @@ class _DashboardPageState extends State<DashboardPage> {
               // =========================
               Row(
                 children: [
-                
                   Expanded(
                     child: DashboardCard(
                       icon: Icons.groups,
                       iconColor: Color(0XFFAB6005),
                       title: "Pledges",
                       subtitle: pledges,
-                      backgroundColor:  Color.fromARGB(255, 255, 250, 243),
+                      backgroundColor: Color.fromARGB(255, 255, 250, 243),
                       onTap: () {
                         showMessage("Pledges");
                       },
@@ -236,16 +235,11 @@ class _DashboardPageState extends State<DashboardPage> {
               // LATEST ANNOUNCEMENTS
               // =========================
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Row(
                     children: [
-                      Icon(
-                        Icons.campaign,
-                        color: Color(0XFFAB6005),
-                        size: 27,
-                      ),
+                      Icon(Icons.campaign, color: Color(0XFFAB6005), size: 27),
 
                       SizedBox(width: 8),
 
@@ -266,9 +260,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     },
                     child: const Text(
                       "View All",
-                      style: TextStyle(
-                        color: Color(0XFFAB6005),
-                      ),
+                      style: TextStyle(color: Color(0XFFAB6005)),
                     ),
                   ),
                 ],
@@ -281,15 +273,14 @@ class _DashboardPageState extends State<DashboardPage> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color:  Color.fromARGB(255, 255, 250, 243),
+                  color: Color.fromARGB(255, 255, 250, 243),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: const Color.fromARGB(255, 248, 230, 210),
                   ),
                 ),
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
@@ -339,31 +330,26 @@ class _DashboardPageState extends State<DashboardPage> {
 
                     const Center(
                       child: Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CircleAvatar(
                             radius: 6,
-                            backgroundColor:
-                                Color(0XFFAB6005),
+                            backgroundColor: Color(0XFFAB6005),
                           ),
                           SizedBox(width: 8),
                           CircleAvatar(
                             radius: 6,
-                            backgroundColor:
-                                Color(0xFFD0CCE0),
+                            backgroundColor: Color(0xFFD0CCE0),
                           ),
                           SizedBox(width: 8),
                           CircleAvatar(
                             radius: 6,
-                            backgroundColor:
-                                Color(0xFFD0CCE0),
+                            backgroundColor: Color(0xFFD0CCE0),
                           ),
                           SizedBox(width: 8),
                           CircleAvatar(
                             radius: 6,
-                            backgroundColor:
-                                Color(0xFFD0CCE0),
+                            backgroundColor: Color(0xFFD0CCE0),
                           ),
                         ],
                       ),
@@ -381,12 +367,11 @@ class _DashboardPageState extends State<DashboardPage> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color:  Color.fromARGB(255, 255, 250, 243),
+                  color: Color.fromARGB(255, 255, 250, 243),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Row(
                       children: [
@@ -418,7 +403,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             icon: Icons.groups,
                             title: "Total Pledge",
                             amount: pledges,
-                            color:Color(0XFFAB6005),
+                            color: Color(0XFFAB6005),
                           ),
                         ),
 
@@ -427,7 +412,6 @@ class _DashboardPageState extends State<DashboardPage> {
                           height: 75,
                           color: Colors.grey.shade300,
                         ),
-
 
                         Expanded(
                           child: SummaryItem(
@@ -466,39 +450,26 @@ class _DashboardPageState extends State<DashboardPage> {
         },
 
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.account_balance_wallet),
             label: "Pledge",
           ),
 
-          BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code_2),
-            label: "Card",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.qr_code_2), label: "Card"),
 
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
     );
   }
 
   void showMessage(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("$message page"),
-      ),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("$message page")));
   }
 }
-
 
 // =====================================================
 // DASHBOARD CARD
@@ -535,14 +506,11 @@ class DashboardCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: iconColor.withOpacity(0.15),
-          ),
+          border: Border.all(color: iconColor.withOpacity(0.15)),
         ),
 
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               width: 50,
@@ -553,11 +521,7 @@ class DashboardCard extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
 
-              child: Icon(
-                icon,
-                color: Colors.white,
-                size: 27,
-              ),
+              child: Icon(icon, color: Colors.white, size: 27),
             ),
 
             const Spacer(),
@@ -580,17 +544,11 @@ class DashboardCard extends StatelessWidget {
                     subtitle,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: iconColor,
-                    ),
+                    style: TextStyle(fontSize: 12, color: iconColor),
                   ),
                 ),
 
-                Icon(
-                  Icons.chevron_right,
-                  color: iconColor,
-                ),
+                Icon(Icons.chevron_right, color: iconColor),
               ],
             ),
           ],
@@ -599,7 +557,6 @@ class DashboardCard extends StatelessWidget {
     );
   }
 }
-
 
 // =====================================================
 // SUMMARY ITEM
@@ -626,21 +583,14 @@ class SummaryItem extends StatelessWidget {
 
       child: Column(
         children: [
-          Icon(
-            icon,
-            color: color,
-            size: 27,
-          ),
+          Icon(icon, color: color, size: 27),
 
           const SizedBox(height: 7),
 
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 11,
-              color: Color(0xFF59537A),
-            ),
+            style: const TextStyle(fontSize: 11, color: Color(0xFF59537A)),
           ),
 
           const SizedBox(height: 5),
