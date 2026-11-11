@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final String loginUrl = 'http://sms.mindasft.com/api/login';
+  final String loginUrl = 'https://sms.mindasft.com/api/login';
 
   // create a function to handle login
   Future<void> handleLogin() async {
@@ -29,8 +29,11 @@ class _LoginState extends State<Login> {
     try {
       final response = await http.post(
         Uri.parse(loginUrl),
-        headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
-        body: jsonEncode( {'email': email, 'password': password}),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode({'email': email, 'password': password}),
       );
       // handle the response from the API
       if (response.statusCode == 200) {
